@@ -1,4 +1,5 @@
 var express = require("express");
+var path = require("path");
 var reservation = require("./reservation");
 
 var app = express();
@@ -15,3 +16,16 @@ app.listen(PORT, function(){
 var peopleList = [];
 var newReservation = new reservation("Bob Jones", "404-444-4444", "bob@hotmails.com", "bob22");
 peopleList.push(newReservation);
+
+//Routes
+app.get("/", function(req, res){
+    res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("reservation", function(req, res){
+    res.sendFile(path.join(__dirname, "reservations.html"));
+});
+
+app.get("tables", function(req, res){
+    res.sendFile(path.join(__dirname, "tables.html"));
+});
